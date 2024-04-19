@@ -7,9 +7,8 @@ Tobzhanov Aziz
 ```
 
 # Models
-## users
 ```
-Users:
+## Users:
 id,
 name,
 
