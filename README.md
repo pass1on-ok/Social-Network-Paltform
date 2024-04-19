@@ -7,9 +7,38 @@ Tobzhanov Aziz
 ```
 
 # Models
+## User
 ```
-## Users:
 id,
 name,
-
+email,
+password
 ```
+## Post
+```
+id,
+user_id,
+post_id,
+category_id,
+date,
+title,
+body,
+rating
+```
+
+## Comment
+```
+id,
+post_id,
+user_id,
+date,
+body,
+```
+
+## Category
+```
+id,
+name,
+rank
+```
+
