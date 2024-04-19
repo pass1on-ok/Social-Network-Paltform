@@ -7,6 +7,10 @@ Tobzhanov Aziz
 ```
 
 # Models
+## users
 ```
 Users:
+id,
+name,
+
 ```
