@@ -22,7 +22,7 @@ post_id,
 category_id,
 date,
 title,
-body,
+image,
 rating
 ```
 
