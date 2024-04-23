@@ -6,8 +6,8 @@ import { User } from '../models/user.model';
 })
 export class UserService {
   private users: User[] = [
-    { id: 1, name: 'Admin', email: 'admin@email.com', password: 'admin' },
-    { id: 2, name: 'Kumar', email: 'kumar@email.com', password: '123' }
+    { id: 1, name: 'Admin', email: 'admin@email.com', password: 'admin',token:'1' },
+    { id: 2, name: 'Kumar', email: 'kumar@email.com', password: '123', token:'2' }
   ];
 
   constructor() { }

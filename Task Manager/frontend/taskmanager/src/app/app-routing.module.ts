@@ -7,6 +7,7 @@ import { PostListComponent } from './components/post-list/post-list.component';
 import { CommentListComponent } from './components/comment-list/comment-list.component';
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'post/:id', component: PostDetailComponent},
   {path: 'comment', component: CommentListComponent},
   {path: 'category', component: CategoryListComponent},
+  {path: 'login', component: LoginComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
 ];
 

@@ -12,6 +12,7 @@ import { PostListComponent } from './components/post-list/post-list.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { CommentListComponent } from './components/comment-list/comment-list.component';
 import { CategoryListComponent } from './components/category-list/category-list.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 
@@ -25,7 +26,8 @@ import { CategoryListComponent } from './components/category-list/category-list.
     PostListComponent,
     PostDetailComponent,
     CommentListComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
