@@ -10,7 +10,7 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<User | null>;
   public currentUser: Observable<User | null>;
 
-  private apiUrl = 'http://127.0.0.1:8000';
+  private apiUrl = 'http://127.0.0.1:8000/api/';
 
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User | null>(JSON.parse(localStorage.getItem('currentUser') || '{}'));
@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<User> {
-    return this.http.post<User>(`${this.apiUrl}/login`, { email, password })
+    return this.http.post<User>(`${this.apiUrl}/users/login`, { email, password })
       .pipe(
         tap((user: User) => {
           localStorage.setItem('currentUser', JSON.stringify(user));

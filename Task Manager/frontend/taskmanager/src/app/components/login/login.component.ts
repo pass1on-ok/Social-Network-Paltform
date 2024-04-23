@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,14 +16,16 @@ export class LoginComponent {
   };
   
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,
+    private router: Router
+  ) {}
 
   onSubmit(form: NgForm): void {
     if (form.valid) {
       this.authService.login(this.loginData.email, this.loginData.password)
         .subscribe(
           data => {
-            // Navigate to home or dashboard
+            this.router.navigate(['/home']);
           },
           error => {
             console.error('Login failed', error);

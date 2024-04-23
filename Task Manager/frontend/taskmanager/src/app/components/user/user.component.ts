@@ -24,5 +24,7 @@ export class UserComponent implements OnInit {
     this.users = this.userService.getUsers();
   }
 
+  
+
 
 }

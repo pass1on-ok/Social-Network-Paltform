@@ -1,3 +1,5 @@
+
+
 .post-list {
   font-family: 'Arial', sans-serif;
   padding: 20px;
@@ -27,6 +29,7 @@ h2 {
 }
 
 .post-image {
+  padding-top: 50px;
   width: auto;
   height: 500px;
   object-fit: cover;
@@ -53,29 +56,24 @@ h2 {
   line-height: 1.5;
   color: #555; 
 }
-
 .post-meta {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #fff; 
-  border-top: 1px solid #eaeaea;
+  flex-direction: column; 
+  align-items: center; 
+  padding: 15px 20px; 
+  background-color: #f4f4f4;  
+  border-top: 1px solid #f4f4f4;
 }
 
 .post-date,
 .post-rating {
   font-size: 1em;
   color: #777; 
+  margin-bottom: 10px; 
 }
 
-.post-meta a {
-  color: #1DA1F2;
-  text-decoration: none;
-  transition: color 0.3s ease;
+.post-rating {
+  font-size: 1.1em; 
+  font-weight: bold;
+  color: #ff4500; 
 }
-
-.post-meta a:hover {
-  color: #0c84d2;
-}
-
