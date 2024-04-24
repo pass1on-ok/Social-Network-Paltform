@@ -1,0 +1,58 @@
+
+  .login-container {
+    max-width: 400px;
+    margin: 80px auto; /* Увеличиваем отступ сверху и снизу для более выделенного положения */
+    padding: 40px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.login-container h2 {
+    margin-bottom: 30px; /* Увеличиваем отступ до следующего элемента */
+    color: #333333;
+    font-size: 2em; /* Увеличиваем размер шрифта заголовка */
+    text-transform: uppercase; /* Преобразуем текст заголовка в верхний регистр */
+}
+
+.login-container p {
+    margin-bottom: 25px; /* Увеличиваем отступ между абзацами */
+    color: #777777;
+    font-size: 1.1em; /* Немного увеличиваем размер шрифта абзацев */
+}
+
+.login-container input[type="email"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 25px; 
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 1.1em;
+    transition: border-color 0.3s ease;
+}
+
+.login-container input[type="email"]:focus,
+.login-container input[type="password"]:focus {
+    border-color: #007bff; /* Изменяем цвет рамки при фокусе */
+    outline: none; /* Убираем стандартный контур при фокусе */
+}
+
+.login-container button {
+    width: 100%;
+    padding: 15px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase; /* Преобразуем текст кнопки в верхний регистр */
+}
+
+.login-container button:hover {
+    background-color: #0056b3;
+}
