@@ -1,19 +1,24 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
-  private users: User[] = [
-    { id: 1, name: 'Admin', email: 'admin@email.com', password: 'admin',token:'1' },
-    { id: 2, name: 'Kumar', email: 'kumar@email.com', password: '123', token:'2' }
-  ];
+  private users: User[] = [];
+  
 
-  constructor() { }
+  private apiUrl = 'http://127.0.0.1:8000/api/';
 
-  getUsers(): User[] {
-    return this.users;
+  constructor(private http: HttpClient) { }
+
+  
+
+  getUsersFromServer(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}user`);
   }
 
   createUser(user: User): void {

@@ -1,6 +1,6 @@
+/* Register Page Styles */
 
-
-.login-container {
+.register-container {
     max-width: 500px;
     margin: 50px auto;
     padding: 30px;
@@ -25,7 +25,7 @@ header p {
     font-size: 16px;
 }
 
-.login-form {
+.register-form {
     margin-bottom: 20px;
 }
 
@@ -41,7 +41,7 @@ label {
 }
 
 .form-control {
-    width: 95%;
+    width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -65,22 +65,22 @@ label {
     background-color: #0056b3;
 }
 
-.register-link {
+.login-link {
     text-align: center;
 }
 
-.register-link p {
+.login-link p {
     margin-top: 20px;
     font-size: 16px;
 }
 
-.register-link a {
+.login-link a {
     color: #007bff;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s;
 }
 
-.register-link a:hover {
+.login-link a:hover {
     color: #0056b3;
 }
