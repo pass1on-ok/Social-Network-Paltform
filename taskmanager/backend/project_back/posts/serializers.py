@@ -59,3 +59,9 @@ class CommentSerializer(serializers.Serializer):
         if not value.strip():
             raise serializers.ValidationError("Comment body cannot be empty")
         return value
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'name', 'rank']

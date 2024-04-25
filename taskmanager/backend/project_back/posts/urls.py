@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from .views import (
     PostCRUD, comment_create, comment_list, comment_update, comment_delete, comment_detail,     
-    who_am_i, list_posts_by_category, ToggleRankView, Top10RatedPostsView
+    who_am_i, list_posts_by_category, ToggleRankView, Top10RatedPostsView, CategoryListAPIView
 )
 
 app_name = 'postapi'
@@ -21,4 +21,6 @@ urlpatterns = [
     path('check/', who_am_i, name='who_am_i'),
     
     path('posts/<int:post_id>/toggle_rank/', ToggleRankView.as_view(), name='toggle_rank'),
+    
+    path('categories/', CategoryListAPIView.as_view(), name='category-list'),
 ]
