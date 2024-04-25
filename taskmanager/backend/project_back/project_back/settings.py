@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-@+po@@rvrxd595^2*@i1$%o_@qh63475l*8rbp*dm!aps)cto&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    
+]
 
 
 # Application definition
@@ -38,7 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'authentication',
+
+    'corsheaders'
+    
     'posts',
+
 ]
 
 MIDDLEWARE = [
@@ -49,6 +55,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
+    
 ]
 
 ROOT_URLCONF = 'project_back.urls'
@@ -134,3 +142,7 @@ REST_FRAMEWORK = {
         'authentication.backends.JWTAuthentication',
             ),
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:4200",  # или другой адрес вашего Angular-приложения
+]

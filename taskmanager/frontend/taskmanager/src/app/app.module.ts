@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +13,9 @@ import { PostDetailComponent } from './components/post-detail/post-detail.compon
 import { CommentListComponent } from './components/comment-list/comment-list.component';
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './logout/logout.component';
+import { AuthGuard } from './auth.guard';
+import { RegisterComponent } from './components/register/register.component';
 
 
 
@@ -28,14 +31,19 @@ import { LoginComponent } from './components/login/login.component';
     CommentListComponent,
     CategoryListComponent,
     LoginComponent,
+    LogoutComponent,
+    RegisterComponent,
+    
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
