@@ -14,7 +14,7 @@ class Post(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     body = models.TextField(max_length=3300, default="Empty")
     title = models.CharField(max_length=255)
-    image_path = models.ImageField(upload_to='post_images/', blank=True, default="")
+    image_path = models.URLField(max_length=500, blank=True)
     rating = models.FloatField(default=0) 
 
     def __str__(self):

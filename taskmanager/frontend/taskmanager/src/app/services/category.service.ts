@@ -1,35 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Category } from '../models/category.model';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from './auth.service';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
-  private categories: Category[] = [
-    { id: 1, name: 'Sport', rank: 1 },
-    { id: 2, name: 'Business', rank: 2 },
-    { id: 3, name: 'Travel', rank: 1 },
-    { id: 4, name: 'Education', rank: 2 },
-  ];
 
-  constructor() { }
+  private apiUrl = 'http://127.0.0.1:8000/postapi/categories/';
 
-  getCategories(): Category[] {
-    return this.categories;
-  }
+  constructor(private http: HttpClient) { }
 
-  createCategory(category: Category): void {
-    this.categories.push(category);
-  }
-
-  updateCategory(updatedCategory: Category): void {
-    const index = this.categories.findIndex(cat => cat.id === updatedCategory.id);
-    if (index !== -1) {
-      this.categories[index] = updatedCategory;
-    }
-  }
-
-  deleteCategory(id: number): void {
-    this.categories = this.categories.filter(cat => cat.id !== id);
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(this.apiUrl);
   }
 }

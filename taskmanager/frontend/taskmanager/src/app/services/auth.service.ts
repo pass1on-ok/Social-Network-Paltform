@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User | null>;
   public currentUser: Observable<User | null>;
+  
 
   private apiUrl = 'http://127.0.0.1:8000/api/';
 
@@ -19,9 +20,18 @@ export class AuthService {
     
   }
 
+/*
+constructor(private http: HttpClient, private router: Router) {
+  this.currentUserSubject = new BehaviorSubject<User | null>(null); // или другое значение по умолчанию
+  this.currentUser = this.currentUserSubject.asObservable();
+}*/
 
   public get currentUserValue(): User | null {
     return this.currentUserSubject.value;
+  }
+
+  getCurrentUser(): Observable<User | null> {
+    return this.currentUser;
   }
 
   login(email: string, password: string): Observable<User> {
@@ -41,6 +51,10 @@ export class AuthService {
               if (response.user.password) {
                 user.password = response.user.password;
               }
+              /*
+              localStorage.setItem('currentUser', JSON.stringify(user));
+              this.currentUserSubject.next(user);
+              */
               localStorage.setItem('currentUser', JSON.stringify(user));
               this.currentUserSubject.next(user);
               this.router.navigate(['profile']);

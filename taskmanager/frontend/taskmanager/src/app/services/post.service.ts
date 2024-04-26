@@ -1,39 +1,102 @@
 import { Injectable } from '@angular/core';
 import { Post } from '../models/post.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, of, tap } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  private posts: Post[] = [
-    {
-      id: 1, user_id: 1, category_id: 1, date: new Date(), title: 'Post 1', rating: 5, content: 'Content 1',
-      image_path: 'https://avatars.mds.yandex.net/i?id=1cf04a6f38f0be15415a0c35010d27a3b2bac0ff-12496338-images-thumbs&n=13'
-    },
-    {
-      id: 2, user_id: 2, category_id: 2, date: new Date(), title: 'Post 2', rating: 4, content: 'Content 2',
-      image_path: 'https://avatars.mds.yandex.net/i?id=5928f2b58c6f204d0e0c3a5c41c07e13ca333881-10753427-images-thumbs&n=13'
+  private apiUrl = 'http://localhost:8000/postapi/posts/';  
+
+  constructor(private http: HttpClient,
+    private authService: AuthService
+  ) { }
+
+  getAllPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(this.apiUrl);
+  }
+
+  getPostById(id: number): Observable<Post> {
+    const url = `${this.apiUrl}${id}/`;
+    return this.http.get<Post>(url);
+  }
+
+  createPost(postData: any): Observable<any> {
+    const url = `${this.apiUrl}`;
+  
+    // Получение токена из currentUser
+    const currentUser = this.authService.currentUserValue;
+  
+    // Проверка наличия текущего пользователя и токена
+    if (!currentUser || !currentUser.token) {
+      console.error('No token found for post creation');
+      return of(undefined);
     }
-  ];
-
-  constructor() { }
-
-  getPosts(): Post[] {
-    return this.posts;
+  
+    // Извлечение токена
+    const token = currentUser.token;
+  
+    // Установка заголовков
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${token}`
+      })
+    };
+  
+    return this.http.post<any>(url, postData, httpOptions)
+      .pipe(
+        tap(response => {
+          console.log('Post created successfully:', response);
+        })
+      );
   }
 
-  createPost(post: Post): void {
-    this.posts.push(post);
+  updatePost(id: number, post: Post): Observable<Post> {
+    const url = `${this.apiUrl}${id}/`;
+    return this.http.put<Post>(url, post);
   }
 
-  updatePost(updatedPost: Post): void {
-    const index = this.posts.findIndex(post => post.id === updatedPost.id);
-    if (index !== -1) {
-      this.posts[index] = updatedPost;
+ 
+  deletePost(id: number): Observable<void> {
+    const url = `${this.apiUrl}${id}/`;
+
+    // Получение токена из currentUser
+    const currentUser = this.authService.currentUserValue;
+
+    // Проверка наличия текущего пользователя и токена
+    if (!currentUser || !currentUser.token) {
+      console.error('No token found for post deletion');
+      return of(undefined);
     }
+
+    // Извлечение токена
+    const token = currentUser.token;
+
+    // Установка заголовков
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${token}`
+      })
+    };
+
+    return this.http.delete<void>(url, httpOptions)
+      .pipe(
+        tap(() => {
+          console.log('Post deleted successfully');
+        })
+      );
   }
 
-  deletePost(id: number): void {
-    this.posts = this.posts.filter(post => post.id !== id);
+  // другие методы PostService
+  getPostsByCategory(categoryId: number): Observable<Post[]> {
+    const url = `${this.apiUrl}/category/${categoryId}/`;
+    return this.http.get<Post[]>(url);
   }
+
 }
+
+

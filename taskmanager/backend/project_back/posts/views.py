@@ -1,4 +1,5 @@
 from .serializers import *
+from rest_framework import generics
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import Post
 from rest_framework.views import APIView 
@@ -14,6 +15,8 @@ from rest_framework.decorators import api_view, permission_classes
 from .permissions import IsCommentOwner
 from rest_framework.response import Response
 from django.core.exceptions import ObjectDoesNotExist
+from .models import Category
+from .serializers import CategorySerializer
 
 class PostCRUD(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -146,6 +149,18 @@ def who_am_i(request):
         return Response({"username": request.user.username})
     return Response({"error": "User not authenticated"}, status=401)
 
+@api_view(['GET'])
+def post_comments(request, post_id):
+    # Получить пост по ID или вернуть 404, если не найден
+    post = get_object_or_404(Post, id=post_id)
+    
+    # Получить комментарии для этого поста
+    comments = Comment.objects.filter(post_id=post_id)
+    
+    # Сериализовать и вернуть комментарии
+    serializer = CommentSerializer(comments, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 
 class ToggleRankView(APIView):
@@ -188,3 +203,16 @@ class Top10RatedPostsView(APIView):
         
         # Return the serialized data with a 200 OK status
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+
+class CategoryListAPIView(APIView):
+    def get(self, request):
+        # Fetch all categories from the database
+        categories = Category.objects.all()
+
+        # Serialize the categories
+        serializer = CategorySerializer(categories, many=True)
+
+        # Return a JSON response with the serialized data
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    

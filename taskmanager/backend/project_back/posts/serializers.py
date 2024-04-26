@@ -10,7 +10,7 @@ class PostSerializer(serializers.Serializer):
     date = serializers.DateTimeField(read_only=True)
     body = serializers.CharField(max_length=3300, default="Empty")
     title = serializers.CharField(max_length=255)
-    image_path = serializers.ImageField(required=False)
+    image_path = serializers.URLField(required=False)
     rating = serializers.FloatField(default=0)
 
     def create(self, validated_data):
@@ -59,3 +59,8 @@ class CommentSerializer(serializers.Serializer):
         if not value.strip():
             raise serializers.ValidationError("Comment body cannot be empty")
         return value
+    
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ('id', 'name', 'rank')

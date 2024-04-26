@@ -1,4 +1,6 @@
 export interface Post {
+    showComments?: any;
+    
     id: number;
     user_id: number;
     category_id: number;
