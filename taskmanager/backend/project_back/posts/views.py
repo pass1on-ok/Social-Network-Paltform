@@ -205,6 +205,7 @@ class Top10RatedPostsView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 
+
 class CategoryListAPIView(APIView):
     def get(self, request):
         # Fetch all categories from the database
@@ -214,5 +215,6 @@ class CategoryListAPIView(APIView):
         serializer = CategorySerializer(categories, many=True)
 
         # Return a JSON response with the serialized data
+
         return Response(serializer.data, status=status.HTTP_200_OK)
     

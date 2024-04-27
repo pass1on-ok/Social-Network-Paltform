@@ -22,7 +22,7 @@ export class AuthService {
 
 /*
 constructor(private http: HttpClient, private router: Router) {
-  this.currentUserSubject = new BehaviorSubject<User | null>(null); // или другое значение по умолчанию
+  this.currentUserSubject = new BehaviorSubject<User | null>(null); 
   this.currentUser = this.currentUserSubject.asObservable();
 }*/
 

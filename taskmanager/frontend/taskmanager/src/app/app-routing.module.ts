@@ -13,7 +13,7 @@ import { RegisterComponent } from './components/register/register.component';
 
 
 const routes: Routes = [
-  {path: 'profile', component: HomeComponent,canActivate: [AuthGuard]},
+  {path: 'profile', component: HomeComponent},
   {path: 'post', component: PostListComponent,canActivate: [AuthGuard]},
   {path: 'post/:id', component: PostDetailComponent,canActivate: [AuthGuard]},
   {path: 'comment', component: CommentListComponent,canActivate: [AuthGuard]},
