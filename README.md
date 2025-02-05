@@ -1,4 +1,4 @@
-# Task Manager
+# Social Network
 ```
 Developers:
 Oskenbay Kumar
